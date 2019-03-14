@@ -7,8 +7,6 @@ group :test, :development do
 end
 <% unless locals[:gems].empty? %>
 
-<% locals[:gems].each do |gem| %>
-<%= "gem \"#{gem}\"" %>
+<%= locals[:gems].map {|gem| "gem \"#{gem}\"" }.join("\n") %>
 
-<% end %>
 <% end %>
