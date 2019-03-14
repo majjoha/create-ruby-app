@@ -4,4 +4,4 @@
 
 require_relative "../lib/create_ruby_app"
 
-CreateRubyApp::App.build_app_from_command_line_arguments!
+CreateRubyApp::CLI.start
