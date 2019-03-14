@@ -4,7 +4,7 @@ require_relative "../../spec_helper"
 
 describe CreateRubyApp::App do
   describe "#classify_name" do
-    context "when the app name contains underscores" do
+    context "when the name of the app contains underscores" do
       let(:app) { described_class.new(name: "foo_bar_baz") }
 
       it "removes the underscores and capitalizes each word" do
@@ -12,7 +12,7 @@ describe CreateRubyApp::App do
       end
     end
 
-    context "when the app name contains no underscores" do
+    context "when the name of the app contains no underscores" do
       let(:app) { described_class.new(name: "foobar") }
 
       it "capitalizes the name" do

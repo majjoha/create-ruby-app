@@ -22,7 +22,7 @@ describe CreateRubyApp::FileGenerator do
       end
     end
 
-    context "when providing additional gems" do
+    context "when additional gems are added" do
       let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
