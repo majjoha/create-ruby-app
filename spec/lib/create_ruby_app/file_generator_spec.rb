@@ -77,7 +77,6 @@ describe CreateRubyApp::FileGenerator do
       let(:file_generator) { described_class.new(app: app) }
 
       it "fills out a lib file with the correct module and class name" do
-        allow(app).to receive(:name).and_return("this_is_an_app")
         allow(app).to receive(:classify_name).and_return("ThisIsAnApp")
 
         expect(file_generator.generate_lib_file).to eq(
