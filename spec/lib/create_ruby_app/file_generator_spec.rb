@@ -23,10 +23,12 @@ describe CreateRubyApp::FileGenerator do
     end
 
     context "when providing additional gems" do
-      let(:app) { CreateRubyApp::App.new(gems: %w[sinatra sqlite]) }
+      let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "produces a Gemfile with the gems" do
+        allow(app).to receive(:gems).and_return(%w[sinatra sqlite])
+
         expect(file_generator.generate_gem_file).to eq(
           <<~GEMFILE
             # frozen_string_literal: true
@@ -47,19 +49,23 @@ describe CreateRubyApp::FileGenerator do
 
   describe "#generate_ruby_version_file" do
     context "when no version is specified" do
-      let(:app) { CreateRubyApp::App.new }
+      let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "uses version 2.6.0 as default" do
+        allow(app).to receive(:version).and_return("ruby-2.6.0")
+
         expect(file_generator.generate_ruby_version_file).to eq("ruby-2.6.0")
       end
     end
 
     context "when a version is specified" do
-      let(:app) { CreateRubyApp::App.new(version: "ruby-2.5.0") }
+      let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "uses the version in the .ruby-version file" do
+        allow(app).to receive(:version).and_return("ruby-2.5.0")
+
         expect(file_generator.generate_ruby_version_file).to eq("ruby-2.5.0")
       end
     end
@@ -67,10 +73,13 @@ describe CreateRubyApp::FileGenerator do
 
   describe "#generate_lib_file" do
     context "when generating a lib file" do
-      let(:app) { CreateRubyApp::App.new(name: "this_is_an_app") }
+      let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "fills out a lib file with the correct module and class name" do
+        allow(app).to receive(:name).and_return("this_is_an_app")
+        allow(app).to receive(:classify_name).and_return("ThisIsAnApp")
+
         expect(file_generator.generate_lib_file).to eq(
           <<~LIB_FILE
             # frozen_string_literal: true
@@ -87,10 +96,12 @@ describe CreateRubyApp::FileGenerator do
 
   describe "#generate_spec_helper_file" do
     context "when generating a spec helper file" do
-      let(:app) { CreateRubyApp::App.new(name: "this_is_an_app") }
+      let(:app) { instance_double("app") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "fills out the file and references the app" do
+        allow(app).to receive(:name).and_return("this_is_an_app")
+
         expect(file_generator.generate_spec_helper_file).to eq(
           <<~SPEC_HELPER
             # frozen_string_literal: true
@@ -104,77 +115,6 @@ describe CreateRubyApp::FileGenerator do
               end
             end
           SPEC_HELPER
-        )
-      end
-    end
-  end
-
-  describe "#generate_projections_file" do
-    context "when generating a projections file" do
-      let(:file_generator) { described_class.new }
-
-      it "fills out a default .projections.json template" do
-        expect(file_generator.generate_projections_file).to eq(
-          <<~PROJECTIONS_FILE
-            {
-              "*.rb": {
-                "type": "source",
-                "alternate": "spec/{}_spec.rb",
-                "template": [
-                  "# frozen_string_literal: true",
-                  "",
-                  "module {dirname|basename|camelcase|capitalize|colons}",
-                  "  class {basename|camelcase|capitalize|colons}",
-                  "    <`0`>",
-                  "  end",
-                  "end"
-                ]
-              },
-              "spec/*_spec.rb": {
-                "type": "test",
-                "alternate": "{}.rb",
-                "template": [
-                  "# frozen_string_literal: true",
-                  "",
-                  "require_relative \\"../../spec_helper\\"",
-                  "",
-                  "describe {dirname|basename|camelcase|capitalize|colons}::{basename|camelcase|capitalize|colons} do",
-                  "  let(:<`0`>) do",
-                  "    <`1`>",
-                  "  end",
-                  "",
-                  "  describe \\"#<`2`>\\" do",
-                  "    it \\"<`3`>\\" do",
-                  "      <`4`>",
-                  "    end",
-                  "  end",
-                  "end"
-                ]
-              },
-              "README.md": {
-                "type": "doc"
-              },
-              "*": {
-                "console": "pry"
-              }
-            }
-          PROJECTIONS_FILE
-        )
-      end
-    end
-  end
-
-  describe "#generate_readme_file" do
-    context "when generating a README file" do
-      let(:file_generator) { described_class.new }
-
-      it "fills out a default README file template" do
-        expect(file_generator.generate_readme_file).to eq(
-          <<~README_FILE
-            # <`0`>
-
-            <`1`>
-          README_FILE
         )
       end
     end
