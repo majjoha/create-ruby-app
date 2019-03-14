@@ -25,7 +25,7 @@ module CreateRubyApp
     DESC
 
     method_option(:ruby, default: App::RUBY_VERSION, aliases: "-r")
-    method_option(:gems, type: :string, default: "", aliases: "-g")
+    method_option(:gems, default: "", aliases: "-g")
     def new(name)
       App.new(
         name: replace_dashes_with_underscores(name),
