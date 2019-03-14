@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "erb"
-require "pathname"
 require "fileutils"
+require "pathname"
 
 module CreateRubyApp
   class FileGenerator
@@ -10,27 +10,24 @@ module CreateRubyApp
       @app = app
     end
 
-    def generate_gem_file
-      handle_erb_file(file: "Gemfile.erb", locals: { gems: app.gems.sort })
+    def generate_gemfile
+      generate_file(file: "Gemfile.erb", locals: { gems: app.gems.sort })
     end
 
     def generate_lib_file
-      handle_erb_file(file: "lib_file.erb", locals: { app: app.classify_name })
-    end
-
-    def generate_spec_helper_file
-      handle_erb_file(file: "spec_helper.erb", locals: { app: app.name })
+      generate_file(file: "lib_file.erb", locals: { app: app.classify_name })
     end
 
     def generate_ruby_version_file
-      handle_erb_file(
-        file: "ruby-version.erb",
-        locals: { version: app.version }
-      )
+      generate_file(file: "ruby-version.erb", locals: { version: app.version })
     end
 
     def generate_script_file
-      handle_erb_file(file: "script_file.erb", locals: {})
+      generate_file(file: "script_file.erb", locals: {})
+    end
+
+    def generate_spec_helper_file
+      generate_file(file: "spec_helper.erb", locals: { app: app.name })
     end
 
     def create_directories
@@ -53,9 +50,9 @@ module CreateRubyApp
 
     attr_accessor :app
 
-    def handle_erb_file(file:, locals: [])
+    def generate_file(file:, locals: [])
       ERB
-        .new(read_file(file), nil, trim_mode: TRIM_MODE)
+        .new(read_file(file), trim_mode: TRIM_MODE)
         .result_with_hash(locals: locals)
     end
 
@@ -73,7 +70,7 @@ module CreateRubyApp
         "lib/#{app.name}.rb" => generate_lib_file,
         "spec/spec_helper.rb" => generate_spec_helper_file,
         ".ruby-version" => generate_ruby_version_file,
-        "Gemfile" => generate_gem_file
+        "Gemfile" => generate_gemfile
       }
     end
 

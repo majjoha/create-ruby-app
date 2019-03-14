@@ -3,12 +3,12 @@
 require_relative "../../spec_helper"
 
 describe CreateRubyApp::FileGenerator do
-  describe "#generate_gem_file" do
+  describe "#generate_gemfile" do
     context "when no additional gems are added" do
       let(:file_generator) { described_class.new }
 
       it "produces a Gemfile without any additional gems" do
-        expect(file_generator.generate_gem_file).to eq(
+        expect(file_generator.generate_gemfile).to eq(
           <<~GEMFILE
             # frozen_string_literal: true
 
@@ -29,7 +29,7 @@ describe CreateRubyApp::FileGenerator do
       it "produces a Gemfile with the gems" do
         allow(app).to receive(:gems).and_return(%w[sinatra sqlite])
 
-        expect(file_generator.generate_gem_file).to eq(
+        expect(file_generator.generate_gemfile).to eq(
           <<~GEMFILE
             # frozen_string_literal: true
 
