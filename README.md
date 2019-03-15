@@ -7,6 +7,12 @@ effortlessly inspired by [Create React
 App](https://github.com/facebook/create-react-app). It generates only the
 essentials needed to start working.
 
+It specifically targets non-Rails applications. For Ruby on Rails apps, it might
+be worth looking into [Rails Application
+Templates](https://guides.rubyonrails.org/rails_application_templates.html)
+instead, and if you are building a gem, please take a look at the `bundle gem`
+command.
+
 ## Requirements
 * Ruby (version 2.6.0 or newer).
 
