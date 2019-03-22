@@ -2,7 +2,7 @@
 
 require_relative "../../spec_helper"
 
-describe CreateRubyApp::FileGenerator do
+RSpec.describe CreateRubyApp::FileGenerator do
   describe "#generate_gemfile" do
     context "when no additional gems are added" do
       let(:file_generator) { described_class.new }
@@ -112,6 +112,8 @@ describe CreateRubyApp::FileGenerator do
               config.expect_with(:rspec) do |c|
                 c.syntax = :expect
               end
+
+              config.disable_monkey_patching!
             end
           SPEC_HELPER
         )

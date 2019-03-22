@@ -2,7 +2,7 @@
 
 require_relative "../../spec_helper"
 
-describe CreateRubyApp::App do
+RSpec.describe CreateRubyApp::App do
   describe "#classify_name" do
     context "when the name of the app contains underscores" do
       let(:app) { described_class.new(name: "foo_bar_baz") }
