@@ -49,23 +49,21 @@ RSpec.describe CreateRubyApp::FileGenerator do
 
   describe "#generate_ruby_version_file" do
     context "when no version is specified" do
-      let(:app) { instance_double("app") }
+      let(:app) do
+        instance_double("app", version: CreateRubyApp::App::RUBY_VERSION)
+      end
       let(:file_generator) { described_class.new(app: app) }
 
-      it "uses version 2.6.0 as default" do
-        allow(app).to receive(:version).and_return("ruby-2.6.0")
-
-        expect(file_generator.generate_ruby_version_file).to eq("ruby-2.6.0")
+      it "uses version 2.6.2 as default" do
+        expect(file_generator.generate_ruby_version_file).to eq("ruby-2.6.2")
       end
     end
 
     context "when a version is specified" do
-      let(:app) { instance_double("app") }
+      let(:app) { instance_double("app", version: "ruby-2.5.0") }
       let(:file_generator) { described_class.new(app: app) }
 
       it "uses the version in the .ruby-version file" do
-        allow(app).to receive(:version).and_return("ruby-2.5.0")
-
         expect(file_generator.generate_ruby_version_file).to eq("ruby-2.5.0")
       end
     end

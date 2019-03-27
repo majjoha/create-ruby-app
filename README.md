@@ -14,7 +14,7 @@ instead, and if you are building a gem, please take a look at the `bundle gem`
 command.
 
 ## Requirements
-* Ruby (version 2.6.0 or newer).
+* Ruby (version 2.6.2 or newer).
 
 ## Installation
 ```

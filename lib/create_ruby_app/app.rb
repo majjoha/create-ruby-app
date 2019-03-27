@@ -30,7 +30,7 @@ module CreateRubyApp
 
     attr_accessor :name, :gems, :version, :logger
 
-    RUBY_VERSION = "ruby-2.6.0"
+    RUBY_VERSION = "ruby-2.6.2"
 
     private
 
