@@ -43,7 +43,7 @@ module CreateRubyApp
     end
 
     def install_gems
-      system("cd #{app.name} && bundle install")
+      Dir.chdir(app.name) { system("bundle", "install") }
     end
 
     private
