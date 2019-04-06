@@ -23,9 +23,18 @@ module CreateRubyApp
         \x5$ create-ruby-app new -g sinatra,sequel -r ruby-2.6.0 web_app
         \x5$ create-ruby-app new --ruby jruby-2.9.6.0 my_app
     DESC
-
-    method_option(:ruby, default: App::RUBY_VERSION, aliases: "-r")
-    method_option(:gems, default: "", aliases: "-g")
+    method_option(
+      :ruby,
+      aliases: "-r",
+      desc: "Specify which Ruby version to use for the project",
+      default: App::RUBY_VERSION
+    )
+    method_option(
+      :gems,
+      aliases: "-g",
+      desc: "Specify which gems to add to the project",
+      default: ""
+    )
     def new(name)
       App.new(
         name: replace_dashes_with_underscores(name),
