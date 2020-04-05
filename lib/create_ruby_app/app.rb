@@ -30,7 +30,7 @@ module CreateRubyApp
 
     attr_reader :name, :gems, :version, :logger
 
-    RUBY_VERSION = "ruby-2.6.2"
+    RUBY_VERSION = "ruby-2.7.1"
 
     private
 

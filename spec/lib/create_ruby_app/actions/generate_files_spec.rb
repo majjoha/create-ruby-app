@@ -55,7 +55,7 @@ RSpec.describe CreateRubyApp::Actions::GenerateFiles do
       end
       let(:action) { described_class.new(app) }
 
-      it { expect(action.ruby_version_file).to eq("ruby-2.6.2") }
+      it { expect(action.ruby_version_file).to eq("ruby-2.7.1") }
     end
 
     context "when a version is specified" do

@@ -14,7 +14,7 @@ instead, and if you are building a gem, please take a look at the `bundle gem`
 command.
 
 ## Requirements
-* Ruby (version 2.6.2 or newer).
+* Ruby (version 2.7.1 or newer).
 
 ## Installation
 ```
@@ -28,7 +28,7 @@ create-ruby-app new NAME [--ruby RUBY] [--gems GEMS]
 
 ### Example
 ```
-create-ruby-app new my-app --gems sinatra,sequel --ruby ruby-2.6.1
+create-ruby-app new my-app --gems sinatra,sequel --ruby ruby-2.7.1
 ```
 
 This will generate the following project structure with
