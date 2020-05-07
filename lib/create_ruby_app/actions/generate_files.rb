@@ -10,8 +10,8 @@ module CreateRubyApp
         @app = app
       end
 
-      def self.call(app)
-        new(app).call
+      def self.call(...)
+        new(...).call
       end
 
       def call

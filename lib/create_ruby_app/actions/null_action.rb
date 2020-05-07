@@ -3,7 +3,7 @@
 module CreateRubyApp
   module Actions
     class NullAction
-      def self.call(app); end
+      def self.call(...); end
     end
   end
 end
