@@ -1,5 +1,5 @@
 # Create Ruby App
-[![Build Status](https://travis-ci.org/majjoha/create-ruby-app.svg)](https://travis-ci.org/majjoha/create-ruby-app)
+[![Build Status](https://travis-ci.org/majjoha/create-ruby-app.svg?branch=main)](https://travis-ci.org/majjoha/create-ruby-app)
 [![Gem Version](https://badge.fury.io/rb/create-ruby-app.svg)](http://badge.fury.io/rb/create-ruby-app)
 
 `create-ruby-app` is an opinionated tool for scaffolding Ruby applications
@@ -54,4 +54,4 @@ Once the project is generated, it will run `bundle install` so you can start
 working.
 
 ## License
-See [LICENSE](https://github.com/majjoha/create-ruby-app/blob/master/LICENSE).
+See [LICENSE](https://github.com/majjoha/create-ruby-app/blob/main/LICENSE).
