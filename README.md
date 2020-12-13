@@ -1,5 +1,5 @@
 # Create Ruby App
-[![Build Status](https://travis-ci.org/majjoha/create-ruby-app.svg?branch=main)](https://travis-ci.org/majjoha/create-ruby-app)
+![CI](https://github.com/majjoha/create-ruby-app/workflows/CI/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/create-ruby-app.svg)](http://badge.fury.io/rb/create-ruby-app)
 
 `create-ruby-app` is an opinionated tool for scaffolding Ruby applications
